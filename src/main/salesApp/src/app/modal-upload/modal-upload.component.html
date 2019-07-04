@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{ title }}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<!--test upload-->
+<form method="post" action="/file/testUpload" enctype="multipart/form-data">
+  <input type="file" multiple name="testFile"/>
+  <input type="submit"/>
+</form>
+
+<div class="modal-body">
+  <div>
+    <div class="form-group">
+<!--      <button type="submit" (click)="addFiles()"> 选择文件 </button>-->
+      <label class="col-form-label">选择文件:</label>
+<!--   JSP中的file类型的input可以直接选择文件上传,multiple属性允许多文件上传-->
+      <input type="file" #fileInput multiple class="form-control-file" (change)="handleFileInput()">
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="closeModal()">关闭</button>
+  <button type="button" class="btn btn-primary" (click)="submitUploadEvent()">提交</button>
+</div>

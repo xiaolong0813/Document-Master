@@ -1,0 +1,9 @@
+<div class="alert alert-fixed alert-dismissible fade"
+      [class.alert-success]="messageService.alert_code == 1"
+      [class.alert-danger]="messageService.alert_code == -1"
+      [class.show]="messageService.alert_code != 0">
+  {{ this.messageService.alert_msg }}
+  <button type="button" (click)="messageService.close_alert()" class="close">
+    <span>&times;</span>
+  </button>
+</div>

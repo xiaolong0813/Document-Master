@@ -1,0 +1,65 @@
+//.sidebar {
+//  display: flex;
+//  flex: 1;
+//  width: 100%;
+//}
+
+$default-background : #D0D0D0;
+
+nav {
+  height: 100%;
+  font-size: 1.25rem;
+
+  border: none;
+
+  //padding-top: 0.5rem;
+  //position: fixed;
+  //left: 0;
+  //flex: 0 0 15em;
+  //*overflow: hidden;
+}
+
+nav {
+  background-color: $default-background;
+  //display: flex;
+  //flex-direction: column;
+  /*background-color: rgba(107, 120, 128, 0.5);*/
+  //background-color: rgba(107, 120, 128, 0.5);
+  //border-right: 0.6px solid grey;
+  /*box-shadow: 0.5px 5px 7px #777777;*/
+}
+
+nav .nav-cell,.todo-item-title,.todo-item-child,#todo-item-all {
+  flex: 0 0 2em;
+  line-height: 3rem;
+  padding-left: 1rem;
+}
+
+nav .todo-item-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+nav .todo-item-child:hover,.todo-item-title:hover {
+  background-color: #FFFFCC;
+  cursor: pointer;
+}
+
+aside .todo-task-list-content:hover {
+  background-color: #FFFFCC;
+  cursor: pointer;
+}
+
+nav .nav-btm {
+  flex: 0 0 4em;
+  background-color: rgba(42, 54, 61, 0.44);
+  line-height: 4em;
+  text-align: center;
+}
+
+nav .nav-btm:hover,aside .aside-btm:hover {
+  cursor: pointer;
+  background: #eee;
+}

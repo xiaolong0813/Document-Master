@@ -1,0 +1,58 @@
+<div class="transMain">
+  <div style="width: 100%;" class="btn-group" role="group">
+    <button type="button" class="btn btn-default" (click)="openModelWithComponent()">Upload</button>
+    <button type="button" class="btn btn-default" (click)="translateAll()">Translate All</button>
+    <button type="button" class="btn btn-default" (click)="downloadAll()">Download All</button>
+    <button type="button" class="btn btn-danger" (click)="removeAll()">Delete All</button>
+
+  </div>
+<!--  <hr>-->
+<!--  <div class="row">-->
+    <!--col-12表示一行显示一个-->
+<!--    <div class="col-12">-->
+      <!--tab-content可以设置导航与面板通过id对应-->
+<!--      <div class="tab-content">-->
+        <!--呈现大型复杂数据的Angular组件-->
+        <!--定义相关属性-->
+        <ul class="pdffiles">
+<!--          <li *ngFor="let file of files$ | async">-->
+          <li *ngFor="let file of files">
+            <div class="file">
+              <span class="badge">
+              {{file.id}}
+            </span>
+              <span class="uploadName">
+                {{ file.name }}
+              </span>
+              <span class="uploadTime">
+                上传时间：
+                {{ file.time }}
+              </span>
+              <span class="uploadTime">
+                状态：
+                {{ file.status }}
+              </span>
+            </div>
+            <button class="setting" title="翻译相关设置"
+            (click)="setting(file)"
+            [disabled]="file.status==1">
+              设置
+            </button>
+            <button class="trans" title="开始翻译"
+                    (click)="translate(file)">
+              翻译
+            </button>
+          </li>
+        </ul>
+
+      </div>
+<!--    </div>-->
+
+    <div class="col-12">
+      <div class="tab-content">
+      </div>
+    </div>
+<!--  </div>-->
+<!--</div>-->
+
+

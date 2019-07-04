@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top">
+  <a class="navbar-brand" href="#">
+    <img src="assets/white1.png" height="30px" alt="logo">
+<!--    Autocheck Tool-->
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/home">主页</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/trans">翻译</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/term">词汇</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/data">数据</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/settings">设置</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/help">帮助</a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/test">测试</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<main role="main">
+
+  <app-message></app-message>
+
+  <!--路由出口-->
+  <router-outlet></router-outlet>
+</main>
+
+<footer>
+  <p class="text-center">© Siemens Ltd. China, 2019</p>
+</footer>
