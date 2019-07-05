@@ -16,6 +16,8 @@ import {el} from "@angular/platform-browser/testing/src/browser_util";
 })
 export class ModalUploadComponent {
 
+  folderId : number;
+
   title: string;
   // filetype is set in initialState
   filetype: string;
@@ -74,6 +76,8 @@ export class ModalUploadComponent {
           return;
         }
       });
+
+      this.formData.append("folder", this.folderId.toString());
       // * dict type can be used?
       // fileDict['file'] = this.uploadFiles;
       // fileDict['type'] = 0;

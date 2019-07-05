@@ -19,19 +19,49 @@
           <li *ngFor="let file of files">
             <div class="file">
               <span class="badge">
-              {{file.id}}
+<!--              {{file.id}}-->
             </span>
-              <span class="uploadName">
-                {{ file.name }}
-              </span>
-              <span class="uploadTime">
-                上传时间：
-                {{ file.time }}
-              </span>
-              <span class="uploadTime">
-                状态：
-                {{ file.status }}
-              </span>
+              <span class="uploadName">{{file.filename}}</span>
+              <span class="uploadTime">上传时间：{{file.savetime}}</span>
+<!--              <span class="status">-->
+<!--&lt;!&ndash;                // 1 -> uploading&ndash;&gt;-->
+<!--&lt;!&ndash;                // 2 -> uploaded&ndash;&gt;-->
+<!--&lt;!&ndash;                // 3 -> parsing&ndash;&gt;-->
+<!--&lt;!&ndash;                // 4 -> translating&ndash;&gt;-->
+<!--&lt;!&ndash;                // 5 -> translated&ndash;&gt;-->
+<!--&lt;!&ndash;                // 6 -> generating&ndash;&gt;-->
+<!--&lt;!&ndash;                // 7 -> generated&ndash;&gt;-->
+<!--                {{ file.status }}-->
+<!--                  <span *ngIf="file.status == 1">-->
+<!--                    <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>-->
+<!--&lt;!&ndash;                    <i class="fa fa-exclamation-circle fa-2x fa-fw"></i>&ndash;&gt;-->
+<!--                     <i>上传中...</i>-->
+<!--                  </span>-->
+<!--                  <span *ngIf="file.status == 2">-->
+<!--                    <i class="fa fa-check-circle-o fa-2x fa-fw"></i>-->
+<!--                     <i>上传完成</i>-->
+<!--                  </span>-->
+<!--                  <span *ngIf="file.status == 3">-->
+<!--                    <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>-->
+<!--                     <i>解析中...</i>-->
+<!--                  </span>-->
+<!--                  <span *ngIf="file.status == 4">-->
+<!--                    <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>-->
+<!--                     <i>翻译中...</i>-->
+<!--                  </span>-->
+<!--                  <span *ngIf="file.status == 5">-->
+<!--                    <i class="fa fa-check-circle fa-2x fa-fw"></i>-->
+<!--                     <i>翻译完成</i>-->
+<!--                  </span>-->
+<!--                  <span *ngIf="file.status == 6">-->
+<!--                    <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>-->
+<!--                     <i>报告生成中...</i>-->
+<!--                  </span>-->
+<!--                   <span *ngIf="file.status == 7">-->
+<!--                    <i class="fa fa-check-circle fa-2x fa-fw"></i>-->
+<!--                     <i>报告完成</i>-->
+<!--                  </span>-->
+<!--                </span>-->
             </div>
             <button class="setting" title="翻译相关设置"
             (click)="setting(file)"

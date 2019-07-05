@@ -1,6 +1,7 @@
 package com.translation.salestranslation.model;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,13 +18,25 @@ public class PDF {
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
 
+    private Integer folderId;
+
     private String filename;
     private String filepath;
 
-    // 1 -> uploading
-    // 2 -> parsing
-    // 3 -> translating
-    // 4 -> processed
+    private String savetime;
+
+    // uploading -> 1
+    // uploaded -> 2
+
+    // parsing -> 3
+    // translating -> 4
+    // translated -> 5
+
+    // error -> 6
+    // caution -> 7
+    // pause -> 8
+    // cancel -> 9
+
     private Integer status;
 
     public Long getId() {
@@ -56,5 +69,21 @@ public class PDF {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getSavetime() {
+        return savetime;
+    }
+
+    public void setSavetime(String savetime) {
+        this.savetime = savetime;
+    }
+
+    public Integer getFolderId() {
+        return folderId;
+    }
+
+    public void setFolderId(Integer folderId) {
+        this.folderId = folderId;
     }
 }

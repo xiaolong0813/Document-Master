@@ -1,0 +1,207 @@
+<div class="dialog dialog-web-uploader dialog-blue h5-uploader"
+     style="width: 633px; top: auto; bottom: 0px; left: auto; right: 30px;
+     display: block; visibility: visible; z-index: 500;">
+
+    <div class="dialog-header" style="display: block;">
+      <h3><span class="dialog-header-title">
+        <em class="select-text">{{ header }}</em>
+      </span>
+      </h3>
+      <div class="dialog-control">
+        <span class="dialog-icon dialog-close icon icon-close">
+          <span class="sicon">×</span>
+        </span>
+        <span class="dialog-icon dialog-min icon icon-minimize">
+          <span class="sicon">-</span>
+        </span>
+      </div>
+    </div>
+
+<!--  <ul>-->
+<!--    <li *ngFor="let file of files"> {{file.filename}} </li>-->
+<!--  </ul>-->
+
+    <div class="dialog-body" style="display: block;">
+      <div class="uploader-list-wrapper">
+        <div class="uploader-list">
+          <ul class="container" id="uploaderList">
+            <li class="file-list" *ngFor="let file of files"
+            [ngClass]="{status_success : file.status == 2 || 5,
+            status_error : file.status == 6 || 7}">
+              <div class="process" style="width: 50%;"></div>
+              <div class="info">
+                <div class="file-name" title="Primer c++ 第5版 - 副本 - 副本.pdf">
+<!--                  <div class="file-icon fileicon-small-pdf"></div>-->
+                  <span class="name-text">{{file.filename}}</span>
+                </div>
+                <div class="file-size">{{file.size}} M</div>
+                <div class="file-status">
+                  <span class="uploading" *ngIf="file.status == 1">
+                  <em class="precent">{{ file.percent }}%</em>
+                  <em class="speed">({{file.speed}}MB/s)</em>
+                </span>
+                  <span class="error" *ngIf="file.status == 6">
+                  <em></em>
+                  <i>服务器错误</i>
+                  <b></b>
+                </span>
+                  <span class="pause" *ngIf="file.status == 8">
+                  <em></em>
+                    <i>已暂停</i>
+                </span>
+                  <span class="cancel" *ngIf="file.status == 9">
+                  <em></em>
+                  <i>已取消</i>
+                </span>
+                  <span class="uploaded" *ngIf="file.status == 2">
+                  <em></em>
+                  <i>秒传</i>
+                </span>
+                </div>
+                <div class="file-operate">
+                  <em class="operate-pause" *ngIf="file.status == 1">
+                    <i class="fa fa-pause" aria-hidden="true"></i>
+                  </em>
+                  <em class="operate-continue" *ngIf="file.status == 8">
+                    <i class="fa fa-play" aria-hidden="true"></i>
+                  </em>
+<!--                  <em class="operate-retry"></em>-->
+                  <em class="operate-remove">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </em>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<!--mini window display-->
+<!--<div class="dialog-min-header" style="display: none;"><div class="header-progress" style="width: 0%; display: none;"></div><h3><span class="dialog-header-title"><em class="select-text">上传完成</em></span></h3><div class="dialog-control"><span class="dialog-icon dialog-close icon icon-close"><span class="sicon">×</span></span><span class="dialog-icon dialog-back icon icon-maximizing"><span class="sicon">□</span></span></div><div class="tips has-error" style="display: block;"><div class="resident-caution"><span class="caution-title" style="width: 4px; text-indent: -9999px;">警告</span><span class="caution-text">严禁利用百度网盘上传、传播暴力恐怖、色情违法及侵犯他人合法权益的违法信息，一经发现将严格按照相关法律法规处理。</span><em class="arrow-outer"></em><em class="arrow-inner"></em></div><a class="g-button" href="javascript:void(0);" style="display: none;"><span class="g-button-right">立即下载</span></a><div class="text">有2个文件上传成功</div><em class="close">×</em></div></div>-->
+
+
+<!--<div class="dialog dialog-web-uploader dialog-blue h5-uploader" id="web-uploader" style="width: 633px; top: auto; bottom: 0px; left: auto; right: 30px; display: block; visibility: visible; z-index: 42;">-->
+
+<!--&lt;!&ndash;  dialog header&ndash;&gt;-->
+<!--  <div class="dialog-header" style="display: block;">-->
+<!--    <h3><span class="dialog-header-title">-->
+<!--      <em class="select-text">上传完成</em>-->
+<!--    </span>-->
+<!--    </h3>-->
+<!--    <div class="dialog-control">-->
+<!--      <span class="dialog-icon dialog-close icon icon-close">-->
+<!--        <span class="sicon">×</span>-->
+<!--      </span>-->
+<!--      <span class="dialog-icon dialog-min icon icon-minimize">-->
+<!--        <span class="sicon">-</span>-->
+<!--      </span>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  &lt;!&ndash;main window display&ndash;&gt;-->
+<!--  <div class="dialog-body" style="display: block;">-->
+<!--    <div class="uploader-list-wrapper">-->
+<!--      <div class="uploader-list">-->
+<!--        <ul class="container" id="uploaderList">-->
+<!--          <li class="file-list status-success">-->
+<!--            <div class="process" style="width: 4.08%;"></div>-->
+<!--            <div class="info">-->
+<!--              <div class="file-name" title="Primer c++ 第5版 - 副本 - 副本.pdf">-->
+<!--                <div class="file-icon fileicon-small-pdf"></div>-->
+<!--                <span class="name-text">Primer c++ 第5版 - 副本 - 副本.pdf</span>-->
+<!--              </div>-->
+<!--              <div class="file-size">198.3M</div>-->
+<!--              <div class="file-path">-->
+<!--                <a title="我的文件" class="server_path" href="#/all?path=%2F">我的文件</a>-->
+<!--              </div>-->
+<!--              <div class="file-status">-->
+<!--                <span class="waiting">排队中…</span>-->
+<!--                <span class="prepare">准备上传…</span>-->
+<!--                <span class="uploading">-->
+<!--                <em class="precent">4.08%</em>-->
+<!--                <em class="speed">(1.2MB/s)</em>-->
+<!--              </span>-->
+<!--                <span class="error">-->
+<!--                <em></em>-->
+<!--                <i>服务器错误</i>-->
+<!--                <b></b>-->
+<!--              </span>-->
+<!--                <span class="caution">-->
+<!--                <em></em>-->
+<!--                <i>服务器错误</i>-->
+<!--                <b></b>-->
+<!--              </span>-->
+<!--                <span class="pause">-->
+<!--                <em></em><i>已暂停</i>-->
+<!--              </span>-->
+<!--                <span class="cancel">-->
+<!--                <em></em>-->
+<!--                <i>已取消</i>-->
+<!--              </span>-->
+<!--                <span class="success">-->
+<!--                <em></em>-->
+<!--                <i>秒传</i>-->
+<!--              </span>-->
+<!--              </div>-->
+<!--              <div class="file-operate">-->
+<!--                <em class="operate-pause"></em>-->
+<!--                <em class="operate-continue"></em>-->
+<!--                <em class="operate-retry"></em>-->
+<!--                <em class="operate-remove"></em>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </li>-->
+<!--          <li class="file-list status-success">-->
+<!--            <div class="process" style="width: 1.55%;"></div>-->
+<!--            <div class="info">-->
+<!--              <div class="file-name" title="Primer c++ 第5版 - 副本.pdf">-->
+<!--                <div class="file-icon fileicon-small-pdf"></div>-->
+<!--                <span class="name-text">Primer c++ 第5版 - 副本.pdf</span>-->
+<!--              </div>-->
+<!--              <div class="file-size">198.3M</div>-->
+<!--              <div class="file-path">-->
+<!--                <a title="我的文件" class="server_path" href="#/all?path=%2F">我的文件</a>-->
+<!--              </div>-->
+<!--              <div class="file-status">-->
+<!--                <span class="waiting">排队中…</span>-->
+<!--                <span class="prepare">准备上传…</span>-->
+<!--                <span class="uploading">-->
+<!--                <em class="precent">1.55%</em>-->
+<!--                <em class="speed">(3KB/s)</em>-->
+<!--              </span><span class="error">-->
+<!--              <em></em>-->
+<!--              <i>服务器错误</i>-->
+<!--              <b></b>-->
+<!--            </span>-->
+<!--                <span class="caution"><em></em>-->
+<!--                <i>服务器错误</i><b></b>-->
+<!--              </span>-->
+<!--                <span class="pause"><em></em>-->
+<!--                <i>已暂停</i>-->
+<!--              </span>-->
+<!--                <span class="cancel"><em></em>-->
+<!--                <i>已取消</i>-->
+<!--              </span>-->
+<!--                <span class="success">-->
+<!--                <em></em><i>秒传</i>-->
+<!--              </span>-->
+<!--              </div>-->
+<!--              <div class="file-operate">-->
+<!--                <em class="operate-pause"></em>-->
+<!--                <em class="operate-continue"></em>-->
+<!--                <em class="operate-retry"></em>-->
+<!--                <em class="operate-remove"></em>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+

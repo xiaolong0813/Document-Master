@@ -10,7 +10,7 @@ export class EmitorService {
 
   public pdfEmitor = new Subject<any>()
 
-  public
+  public uploadDoneEmitor = new Subject<boolean>();
 
 
   // public pdfObsever$ : Observable<pdfFile[]>;

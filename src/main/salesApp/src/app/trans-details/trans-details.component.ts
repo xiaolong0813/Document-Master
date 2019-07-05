@@ -6,6 +6,7 @@ import {pdfFile} from "../models/pdfFile";
 import {current} from "codelyzer/util/syntaxKind";
 import {EmitorService} from "../services/emitor.service";
 import {FileService} from "../services/file.service";
+import {MessageService} from "../services/message.service";
 
 @Component({
   selector: 'app-trans-details',
@@ -16,12 +17,13 @@ export class TransDetailsComponent implements OnInit {
 
   modalRef: BsModalRef;
 
-  @ViewChild('transDetail')
-  private transDetail: TransDetailsComponent;
+  public folderID : number;
 
   public time = interval(1000);
+  public time$
 
   files : pdfFile[];
+
   // files$ : Observable<pdfFile[]>;
   // filesTest: pdfFile[] = [
   //   {id: 1,name: "no1",status : 1, time: new Date().toLocaleDateString()},
@@ -32,10 +34,14 @@ export class TransDetailsComponent implements OnInit {
     private modalService: BsModalService,
     private emitorService : EmitorService,
     private fileService : FileService,
+    private messageService : MessageService,
   ) { }
 
   ngOnInit() {
-    this.newPDFEvent();
+    this.folderID = 0;
+
+    // this.uploadEvent();
+    this.getUploadEvent();
 
     // * should set to timer here
     this.getPDFFiles();
@@ -49,32 +55,32 @@ export class TransDetailsComponent implements OnInit {
     // )
   }
 
+  // createTimer() {
+  //   this.time
+  // }
+
+  getUploadEvent() {
+    this.emitorService.uploadDoneEmitor.subscribe(
+      upload => {
+        if (upload) {
+          console.log("Upload finished!")
+          this.getPDFFiles();
+        }
+      }
+    )
+  }
+
   getPDFFiles() {
-    this.fileService.getPDFFiles().subscribe(
+    this.fileService.getPDFFiles(this.folderID).subscribe(
       files => {
         this.files = files;
       }
     )
   }
 
-  newPDFEvent() {
-    this.emitorService.pdfEmitor.subscribe(
-      files => {
-        this.fileService.uploadPDF(files).subscribe(
-          mes => {
-            console.log("message data is : " + mes.data)
-            if (mes.status_code == 200) {
-              this.getPDFFiles();
-              // console.log("message data is : " + mes.data)
-            }
-          }
-        )
-      }
-    )
-  }
-
   openModelWithComponent() {
     const initialState = {
+      folderId : this.folderID,
       title: '上传文件',
       filetype: 'pdf'
     };
@@ -85,11 +91,17 @@ export class TransDetailsComponent implements OnInit {
   }
 
   removeAll() {
-
-  }
-
-  getXMLs() {
-
+    if (confirm("确定要删除所有文件吗？(所有已翻译数据也会一并删除）")) {
+      this.fileService.removeAllPDFs(this.folderID).subscribe(
+        mes => {
+          if (mes.status_code == 200) {
+            this.getPDFFiles();
+            this.messageService.new_alert(1, "所有文件已被删除")
+            return;
+          }
+        }
+      )
+    }
   }
 
   translateAll() {

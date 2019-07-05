@@ -1,0 +1,386 @@
+div {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.dialog.dialog-web-uploader, .dialog.flash-uploader {
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  border: 1px solid #e2e2e2;
+  box-shadow: 0 0 10px #ccc;
+  margin-bottom: -2px;
+}
+
+.dialog {
+  font: 12px "Microsoft YaHei", arial, SimSun, 宋体;
+  position: absolute;
+  //box-shadow: none;
+  overflow: hidden;
+  background: #fff;
+  //border: 0;
+}
+
+.dialog-blue {
+  border-radius: 1px 1px 0 0;
+  //border: 1px solid #CED0D7;
+}
+
+.dialog.dialog-web-uploader .dialog-header, .dialog.flash-uploader .dialog-header {
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  background-color: #fff;
+}
+
+.dialog-blue .dialog-min-header, .dialog-blue .dialog-header {
+  border-bottom: 1px solid #f7faff;
+}
+
+.dialog .dialog-min-header, .dialog .dialog-header {
+  position: relative;
+
+  background-color: #FAFDFF;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom: 1px solid #D0DFE7;
+  height: 44px;
+  line-height: 44px;
+  font-weight: 200;
+}
+
+.dialog-blue .dialog-min-header, .dialog-blue .dialog-header {
+  color: #7D818A;
+  background: #E7ECF2;
+  border-bottom: 0;
+}
+
+.dialog-web-uploader.dialog .dialog-min-header h3, .dialog-web-uploader.dialog .dialog-header h3 {
+  height: 44px;
+  line-height: 44px;
+}
+
+.dialog .dialog-min-header h3, .dialog .dialog-header h3 {
+  color: #424e67;
+}
+
+.dialog .dialog-min-header h3, .dialog .dialog-header h3 {
+  position: relative;
+  display: block;
+  height: 42px;
+  line-height: 42px;
+  text-indent: 1em;
+  font-size: 14px;
+  font-weight: 700;
+  color: #4d4d4d;
+}
+
+h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.dialog .dialog-header-title {
+  display: block;
+  margin-right: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #666;
+}
+
+.dialog .dialog-header-title .select-text {
+  font-style: normal;
+  cursor: text;
+}
+
+.dialog .dialog-header-title em {
+  font-style: normal;
+  cursor: text;
+  font-weight: 200;
+}
+
+//dialog control
+.dialog .dialog-control {
+  top: 13px;
+  right: 12px;
+}
+
+.dialog .dialog-control {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  height: 20px;
+}
+
+//icon of dialog-control
+.dialog .dialog-control .icon {
+  height: 20px;
+  width: 20px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+  color: #999;
+  margin: 0 2px;
+}
+
+.dialog .dialog-control span {
+  cursor: pointer;
+  float: right;
+}
+
+//close icon
+.dialog-blue .dialog-close {
+  background-position: -80px 0;
+}
+
+// min icon
+.dialog-blue .dialog-min {
+  background-position: -60px 0;
+}
+
+// icon
+.icon-close:before {
+  content: "\2716";
+}
+
+.icon-minimize:before {
+  content: "\2013";
+}
+
+.dialog .dialog-control .icon span {
+  font-size: 14px;
+}
+
+.dialog .dialog-control .icon .sicon {
+  display: none;
+}
+
+//use CSS3 icon font
+.icon {
+  //font-family: yunfont!important;
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dialog-web-uploader .dialog-control span {
+  font-size: 28px;
+  color: #607194;
+  line-height: 16px;
+  text-align: center;
+  margin: 0 4px;
+}
+
+.dialog .dialog-control span {
+  cursor: pointer;
+  float: right;
+}
+
+//***********dialog body
+
+.dialog .dialog-body {
+  background: 0 0;
+  line-height: 24px;
+}
+
+.dialog-web-uploader .uploader-list-wrapper {
+  position: relative;
+  margin-top: -1px;
+}
+
+.dialog-web-uploader .uploader-list {
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  height: 349px;
+  margin-top: -1px;
+}
+
+//ul container
+.dialog-web-uploader .uploader-list .container {
+  color: #424e67;
+}
+
+.dialog-web-uploader .container {
+  position: relative;
+  overflow: hidden;
+  color: #666;
+}
+
+ul, li, ol {
+  list-style: none;
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+
+  margin: 0;
+  padding: 0;
+}
+
+//ui li
+
+.dialog-web-uploader .file-list {
+  position: relative;
+  height: 49px;
+  border-bottom: 1px solid #f2f6fd;
+  line-height: 49px;
+}
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+.dialog-web-uploader .file-list .info {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.dialog-web-uploader .file-name {
+  position: relative;
+  float: left;
+  overflow: hidden;
+  width: 43%;
+  height: 49px;
+  white-space: nowrap;
+  text-indent: 45px;
+  text-overflow: ellipsis;
+}
+
+// file icon
+.dialog-web-uploader .file-icon {
+  position: absolute;
+  top: 12px;
+  left: 13px;
+  width: 24px;
+  height: 24px;
+}
+
+.fileicon-small-bt, .fileicon-small-dws, .fileicon-small-code, .fileicon-small-txt, .fileicon-small-pdf, .fileicon-small-doc, .fileicon-small-ppt, .fileicon-small-xls, .fileicon-small-vsd, .fileicon-small-pic, .fileicon-small-mmap, .fileicon-small-xmind, .fileicon-small-mm, .fileicon-small-mp3, .icon-play-music, .default-small, .dir-multi-small, .dir-multi-middle, .dir-small, .dir-cang-small, .dir-app-small, .dir-apps-small, .dir-backup-small, .dir-share-middle, .dir-phone-small, .fileicon-sys-s-exe, .fileicon-sys-s-apk, .fileicon-sys-s-psd, .fileicon-sys-s-key, .fileicon-sys-s-ai {
+  background-image: url(/box-static/file-widget-1/icons_z_6ae3d28.png);
+}
+
+.fileicon-small-pdf {
+  background-position: -596px -136px;
+  background-repeat: no-repeat;
+}
+
+.dialog-web-uploader .file-name .name-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dialog-web-uploader .file-size {
+  float: left;
+  width: 13%;
+  height: 49px;
+  text-indent: 10px;
+}
+
+// file status
+
+.dialog-web-uploader .file-list.status-waiting .file-status .waiting,
+.dialog-web-uploader .file-list.status-prepare .file-status .prepare,
+.dialog-web-uploader .file-list.status-uploading .file-status .uploading,
+.dialog-web-uploader .file-list.status_error .file-status .error,
+.dialog-web-uploader .file-list.status-caution .file-status .caution,
+.dialog-web-uploader .file-list.status-pause .file-status .pause,
+.dialog-web-uploader .file-list.status-cancel .file-status .cancel,
+.dialog-web-uploader .file-list.status_success .file-status .success {
+  display: inline;
+}
+
+.dialog-web-uploader .file-list .file-status {
+  text-indent: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dialog-web-uploader .file-status {
+  position: relative;
+  float: left;
+  width: 21%;
+  height: 49px;
+}
+
+.dialog-web-uploader .file-list em, .dialog-web-uploader .file-list i {
+  font-style: normal;
+}
+
+.dialog-web-uploader .file-list .success em, .dialog-web-uploader .file-list .error em{
+  position: absolute;
+  top: 17px;
+  left: 0;
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.dialog-web-uploader .file-list .error i {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dialog-web-uploader .file-list.status_success .file-status .success {
+  display: inline;
+}
+
+.dialog-web-uploader .file-list.status_success .success i {
+  font-style: normal;
+  text-indent: 20px;
+}
+
+//*******file operate
+
+.dialog-web-uploader .file-operate {
+  height: 16px;
+  //padding: 17px 0;
+}
+
+.dialog-web-uploader .file-operate span{
+  display: block;
+}
+
+.dialog-web-uploader .file-operate {
+  float: left;
+  width: 10%;
+  height: 49px;
+}
+
+//.dialog-web-uploader .file-operate em.operate-pause,
+//.dialog-web-uploader .status-locked .file-operate em.operate-pause:hover {
+//  //background: url(/box-static/disk-system/widget/plugin/uploader/images/operate-pause_2f4b46b.png);
+//  background-repeat: no-repeat;
+//  background-position: center center!important;
+//}
+
+.dialog-web-uploader .file-operate em {
+  //display: none;
+  display: block;
+  float: left;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  //background: url(/box-static/disk-system/widget/plugin/uploader/images/operate-icon_799c133.png) no-repeat;
+  cursor: pointer;
+}

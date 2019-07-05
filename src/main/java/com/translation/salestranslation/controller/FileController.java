@@ -4,6 +4,7 @@ package com.translation.salestranslation.controller;
 import com.translation.salestranslation.model.Message;
 import com.translation.salestranslation.model.PDF;
 import com.translation.salestranslation.model.PDFRepository;
+import com.translation.salestranslation.model.TextRepository;
 import com.translation.salestranslation.service.FileProcessService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,6 +19,9 @@ import org.springframework.web.util.WebUtils;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import java.io.DataInput;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +47,9 @@ public class FileController {
     @Autowired
     private PDFRepository pdfRepository;
 
+    @Autowired
+    private TextRepository textRepository;
+
     @RequestMapping("/testUpload")
     public Message testUpload(MultipartHttpServletRequest request) {
         System.out.println("get req from: " + request);
@@ -50,10 +57,34 @@ public class FileController {
         return msg;
     }
 
-    @GetMapping("/getPDFs")
-    public Iterable<PDF> getAllPDFs() {
-        logger.info("Return all PDF files");
-        return pdfRepository.findAllByOrderByIdDesc();
+    @GetMapping("/getPDFs/{folderId}")
+    public Iterable<PDF> getAllPDFs(@PathVariable Integer folderId) {
+        logger.info("Return PDF files in " + folderId);
+        if (folderId == 0)
+            return pdfRepository.findAllByOrderByIdDesc();
+        else
+            return pdfRepository.findByFolderIdOrderByIdDesc(folderId);
+    }
+
+    @DeleteMapping("/{folderId}")
+    public Message deleteAllPDFs(@PathVariable Integer folderId) {
+        Message message = new Message();
+        try {
+            if (folderId == 0) {
+                pdfRepository.deleteAll();
+                textRepository.deleteAll();
+            }
+            else {
+                pdfRepository.deleteByFolderId(folderId);
+                textRepository.deleteByFolderId(folderId);
+            }
+            message.setStatus_code(200);
+            logger.info("All data in folder" + folderId + "has been deleted");
+        } catch (Exception e) {
+            logger.info("Delete failed for folder " + folderId);
+            message.setStatus_code(-1);
+        }
+        return message;
     }
 
 
@@ -75,12 +106,22 @@ public class FileController {
     // * method to get request : RequestParam, HttpServletRequest etc.
     // * RequestParam(key) can also be used to get params
     @PostMapping(path = "/uploadpdf")
-    public Message getUploadPDFs(MultipartHttpServletRequest upPDFs) {
+    public Message uploadPDFs(MultipartHttpServletRequest upPDFs) {
         Message msg = new Message();
 //        String[] filename = new String[upPDFs.size()];
         logger.info("The type of uploaded file is PDF");
+        // get folder id for data storing
+        Integer folderId = Integer.parseInt(upPDFs.getParameter("folder"));
         // set request list to local list
+//        The file contents are either stored in memory or temporarily on disk.
+//        In either case, the user is responsible for copying file contents to a
+//        session-level or persistent store as and if desired. The temporary storage
+//        will be cleared at the end of request processing
         List<MultipartFile> files = upPDFs.getFiles("upFiles");
+
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd :HH:mm:ss");
+        String upTime = dateFormat.format(date);
 
         if (!CollectionUtils.isEmpty(files)) {
             try {
@@ -94,6 +135,8 @@ public class FileController {
                     pdf.setFilename(name);
                     pdf.setFilepath(filepath);
                     pdf.setStatus(1);
+                    pdf.setSavetime(upTime);
+                    pdf.setFolderId(folderId);
 
                     pdfRepository.save(pdf);
                     logger.info("Start to upload pdf file asynchronously!");
@@ -103,7 +146,6 @@ public class FileController {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
                 });
                 // return entity in repository by descend id order
                 // because latest uploaded file should be at first

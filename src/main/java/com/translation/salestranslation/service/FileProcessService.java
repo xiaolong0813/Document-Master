@@ -16,14 +16,13 @@ public class FileProcessService {
     private PDFRepository pdfRepository;
 
 
-    @Async("Async")
+//    @Async("Async")
     public void uploadPDFs() throws Exception {
-
 
         // refer to scdn blog in java-spring
         logger.info("start to upload file");
 
-        Thread.sleep(5000);
+        Thread.sleep(3000);
 
         logger.info("uploading finished!");
     }

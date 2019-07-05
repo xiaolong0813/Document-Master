@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import {TransDetailsComponent} from "../trans-details/trans-details.component";
 
 @Component({
   selector: 'app-translation',
@@ -6,6 +7,9 @@ import {Component, OnInit, ViewChild} from '@angular/core';
   styleUrls: ['./translation.component.scss']
 })
 export class TranslationComponent implements OnInit {
+
+  @ViewChild('transDetail')
+  private transDetail: TransDetailsComponent;
 
   constructor(
   ) { }

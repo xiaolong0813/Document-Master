@@ -27,6 +27,7 @@ import zh from '@angular/common/locales/zh';
 import { HttpClientModule} from "@angular/common/http";
 import { TestComponent } from './test/test.component';
 import { MessageComponent } from './message/message.component';
+import { PopupComponent } from './popup/popup.component';
 
 // import { FlexLayoutModule} from "@angular/flex-layout";
 
@@ -45,6 +46,7 @@ import { MessageComponent } from './message/message.component';
     SidebarComponent,
     TestComponent,
     MessageComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,

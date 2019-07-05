@@ -40,8 +40,12 @@ export class FileService {
   //   // return status;
   // }
 
-  getPDFFiles() : Observable<pdfFile[]>{
-    return this.http.get<pdfFile[]>(this.api + "getPDFs")
+  getPDFFiles(folderId : number) : Observable<pdfFile[]>{
+    return this.http.get<pdfFile[]>(this.api + "getPDFs/" + folderId);
 
+  }
+
+  removeAllPDFs(folderId : number) : Observable<Message>{
+    return this.http.delete<Message>(this.api + folderId);
   }
 }
