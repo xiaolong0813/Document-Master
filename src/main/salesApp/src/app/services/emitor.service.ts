@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, Subject} from "rxjs";
-import {pdfFile} from "../models/pdfFile";
+import {uploadFile} from "../models/uploadFile";
 import {FileService} from "./file.service";
 
 @Injectable({
@@ -13,7 +13,7 @@ export class EmitorService {
   public uploadDoneEmitor = new Subject<boolean>();
 
 
-  // public pdfObsever$ : Observable<pdfFile[]>;
+  // public pdfObsever$ : Observable<uploadFile[]>;
 
   // public uploadPDFFiles(filelist : FileList) {
   //   this.pdfEmitor.next(filelist);

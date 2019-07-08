@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {pdfFile} from "../models/pdfFile";
+import {uploadFile} from "../models/uploadFile";
 import {EmitorService} from "../services/emitor.service";
 import {FileService} from "../services/file.service";
 
@@ -10,7 +10,7 @@ import {FileService} from "../services/file.service";
 })
 export class PopupComponent implements OnInit {
 
-  files : pdfFile[];
+  files : uploadFile[];
   display : boolean;
   header: string;
   // percentage: number;
@@ -38,10 +38,14 @@ export class PopupComponent implements OnInit {
           file.percent = 0;
           file.speed = 0;
         });
-        this.fileService.uploadPDF(files).subscribe(
-          mes => {
-            console.log("message data is : " + mes.data)
-            if (mes.status_code == 200) {
+        this.fileService.upload(files).subscribe(
+          mesList => {
+            if (mesList.length != 0) {
+              let i = 0;
+              mesList.forEach(mes => {
+                this.files[i].status = mes.status_code;
+                i++;
+              });
               this.emitorService.uploadDoneEmitor.next(true);
               // this.getPDFFiles();
               // console.log("message data is : " + mes.data)

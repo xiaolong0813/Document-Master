@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable, interval, of} from "rxjs";
 import {take} from "rxjs/operators";
-import {pdfFile} from "../models/pdfFile";
+import {uploadFile} from "../models/uploadFile";
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "./message.service";
 import {Message} from "../models/message";
@@ -20,15 +20,15 @@ export class FileService {
   ) { }
 
   // return
-  public uploadPDF(uploadFiles: FormData): Observable<Message>{
+  public upload(uploadFiles: FormData): Observable<Message[]>{
     // const status = {};
     // uploadFiles.forEach(file => {
     //   status[file.name] = { progress: interval(1000)}
     // });
-    return this.http.post<Message>(this.api + 'uploadpdf', uploadFiles);
+    return this.http.post<Message[]>(this.api + 'upload', uploadFiles);
   }
 
-  // public upload(uploadFiles: Set<File>): Observable<pdfFile[]> {
+  // public upload(uploadFiles: Set<UploadFile>): Observable<uploadFile[]> {
   //   if (uploadFiles.size == 0) {
   //     return of([]);
   //   }
@@ -40,9 +40,8 @@ export class FileService {
   //   // return status;
   // }
 
-  getPDFFiles(folderId : number) : Observable<pdfFile[]>{
-    return this.http.get<pdfFile[]>(this.api + "getPDFs/" + folderId);
-
+  getPDFFiles(folderId : number) : Observable<uploadFile[]>{
+    return this.http.get<uploadFile[]>(this.api + "getPDFs/" + folderId);
   }
 
   removeAllPDFs(folderId : number) : Observable<Message>{

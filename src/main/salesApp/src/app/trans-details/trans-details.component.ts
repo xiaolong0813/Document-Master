@@ -2,11 +2,12 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ModalUploadComponent} from '../modal-upload/modal-upload.component';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {interval, Observable} from "rxjs";
-import {pdfFile} from "../models/pdfFile";
+import {uploadFile} from "../models/uploadFile";
 import {current} from "codelyzer/util/syntaxKind";
 import {EmitorService} from "../services/emitor.service";
 import {FileService} from "../services/file.service";
 import {MessageService} from "../services/message.service";
+import {TranslateService} from "../services/translate.service";
 
 @Component({
   selector: 'app-trans-details',
@@ -19,13 +20,13 @@ export class TransDetailsComponent implements OnInit {
 
   public folderID : number;
 
-  public time = interval(1000);
-  public time$
+  // public time = interval(1000);
+  // public time$
 
-  files : pdfFile[];
+  files : uploadFile[];
 
-  // files$ : Observable<pdfFile[]>;
-  // filesTest: pdfFile[] = [
+  // files$ : Observable<uploadFile[]>;
+  // filesTest: uploadFile[] = [
   //   {id: 1,name: "no1",status : 1, time: new Date().toLocaleDateString()},
   //   {id: 2,name: "no2",status : 1,time: new Date().toLocaleDateString()},
   //   {id: 3,name: "no3",status : 1, time: new Date().toLocaleDateString()}];
@@ -35,6 +36,7 @@ export class TransDetailsComponent implements OnInit {
     private emitorService : EmitorService,
     private fileService : FileService,
     private messageService : MessageService,
+    private translateService : TranslateService,
   ) { }
 
   ngOnInit() {
@@ -55,15 +57,11 @@ export class TransDetailsComponent implements OnInit {
     // )
   }
 
-  // createTimer() {
-  //   this.time
-  // }
-
   getUploadEvent() {
     this.emitorService.uploadDoneEmitor.subscribe(
       upload => {
         if (upload) {
-          console.log("Upload finished!")
+          console.log("Upload finished!");
           this.getPDFFiles();
         }
       }
@@ -71,9 +69,11 @@ export class TransDetailsComponent implements OnInit {
   }
 
   getPDFFiles() {
+    console.log(this.folderID)
     this.fileService.getPDFFiles(this.folderID).subscribe(
       files => {
         this.files = files;
+        console.log(this.files)
       }
     )
   }
@@ -82,7 +82,8 @@ export class TransDetailsComponent implements OnInit {
     const initialState = {
       folderId : this.folderID,
       title: '上传文件',
-      filetype: 'pdf'
+      // filetype: 'pdf',
+      filetype: 'docx',
     };
     // open popup with modalService with init state settings
     // initialState will be get in modal component
@@ -112,11 +113,11 @@ export class TransDetailsComponent implements OnInit {
 
   }
 
-  setting(file: pdfFile) {
+  setting(file: uploadFile) {
     
   }
 
-  translate(file: pdfFile) {
-    
+  translate(fileId: number, leve : number) {
+    this.translateService.translate(fileId).subscribe()
   }
 }

@@ -1,4 +1,4 @@
-export class pdfFile {
+export class uploadFile {
   // para name should be aligned with backend
   id : number;
   filename : string;

@@ -11,12 +11,16 @@ import javax.persistence.Id;
 // * Persistence 将其实现为Entity
 // * Entity can be saved by CrudRepository
 @Entity
-public class PDF {
+public class UploadFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
+
+//    0 -> pdf
+//    1 -> docx
+    private Integer filetype;
 
     private Integer folderId;
 
@@ -85,5 +89,13 @@ public class PDF {
 
     public void setFolderId(Integer folderId) {
         this.folderId = folderId;
+    }
+
+    public Integer getFiletype() {
+        return filetype;
+    }
+
+    public void setFiletype(Integer filetype) {
+        this.filetype = filetype;
     }
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {pdfFile} from "../models/pdfFile";
+import {uploadFile} from "../models/uploadFile";
 
 
 @Component({
@@ -10,7 +10,7 @@ import {pdfFile} from "../models/pdfFile";
 export class SidebarComponent implements OnInit {
   fileNum: number;
 
-  pdffiles : pdfFile[];
+  pdffiles : uploadFile[];
 
 
 

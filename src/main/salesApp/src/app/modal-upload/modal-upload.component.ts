@@ -64,11 +64,8 @@ export class ModalUploadComponent {
   }
 
   submitUploadEvent() {
-    // this.progress = this.fileService.upload(this.uploadFiles);
-    // console.log(this.progress);
-    // const allProgressed = [];
-    // const fileDict = {};
     if (this.filetype == 'pdf') {
+      this.formData.append("type", "0");
       // check if all files are pdf formats
       this.uploadFiles.forEach(file => {
         if (file.type != 'application/pdf'){
@@ -76,25 +73,31 @@ export class ModalUploadComponent {
           return;
         }
       });
-
-      this.formData.append("folder", this.folderId.toString());
-      // * dict type can be used?
-      // fileDict['file'] = this.uploadFiles;
-      // fileDict['type'] = 0;
-      for (let i = 0; i < this.fileList.length; i++) {
-        // add to FormDataEntryValue[]
-        this.formData.append("upFiles", this.fileList.item(i))
-      }
-      // to get all FormDataEntryValue type data
-      // console.log(this.formData.getAll("upFiles"));
-
-      this.emitorService.pdfEmitor.next(this.formData);
-
-      this.closeModal();
     }
-    else if (this.filetype == 'voca') {
-      return
+    else if (this.filetype == 'docx') {
+      this.formData.append("type", "1");
+      this.uploadFiles.forEach(file => {
+        if (file.type != 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+          this.messageService.new_alert(-1, "请选择.docx格式文件")
+          return;
+        }
+      });
     }
+
+    this.formData.append("folder", this.folderId.toString());
+    // * dict type can be used?
+    // fileDict['file'] = this.uploadFiles;
+    // fileDict['type'] = 0;
+    for (let i = 0; i < this.fileList.length; i++) {
+      // add to FormDataEntryValue[]
+      this.formData.append("upFiles", this.fileList.item(i))
+    }
+    // to get all FormDataEntryValue type data
+    // console.log(this.formData.getAll("upFiles"));
+
+    this.emitorService.pdfEmitor.next(this.formData);
+
+    this.closeModal();
   }
 
   closeModal() {
